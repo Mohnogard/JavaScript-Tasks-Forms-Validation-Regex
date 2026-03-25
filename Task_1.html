@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<head>
+    <title></title>
+</head>
+
+<style>
+
+body{
+  margin: 20px;
+    font-family: Arial, Helvetica, sans-serif
+
+}
+.boxes{
+    justify-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+/* Align labels + inputs neatly */
+.form {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  margin: 20px 300px;
+  align-items: center; /* 🔥 change this */
+}
+
+.form div {
+  display: flex;
+  flex-direction: column;
+}
+
+small {
+  color: red;
+  font-size: 12px;
+  min-height: 14px; /* 🔥 prevents jumping */
+}
+/* Make inputs fill nicely */
+input {
+  width: 100%;
+  padding: 5px;
+}
+
+/* Center the button */
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 5px 15px;
+  align-items: center;
+}
+.full-width {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center; /* 🔥 real centering */
+}
+#output div {
+  margin-top: 5px;
+  width: 200px;
+}
+</style>
+
+<body>
+
+<h1 style="text-align: center;"> Basic Info Form</h1>
+
+<form id="myForm" class="form">
+    <label for="first" style="font-weight: bold;">First name:</label><div>
+    
+    <input type="text"id="first"class='boxes' placeholder="Enter your first name"/>
+    <small id="nameerror"></small></div>
+
+    <label for="last" style="font-weight: bold;">Last name:</label><div>
+     
+    <input type="text"id='last'class='boxes'placeholder='Enter your last name'/>
+    <small id="lasterror"></small></div>
+
+    <label for="mail" style="font-weight: bold;">Email:</label><div>
+  
+    <input type="text"id='mail'class='boxes'placeholder='Enter your email'/>
+    <small id="mailerror"></small></div>
+
+    <label for="phone" style="font-weight: bold;">Phone number:</label><div>
+  
+    <input type="number"id='phone'class='boxes'placeholder='Enter your phone number'/>
+    <small id="phoneerror"></small></div>
+
+<div>
+    <div class="full-width">
+    <button type="submit" id="submitbutton">Submit</button>
+</div>
+</form>
+  <!-- <button type="submit"class='button'id='submitbutton'>Submit</button></div> -->
+
+<div id="output">
+    <div style="font-weight: bold;">Submitted Data:</div>
+    <div>First Name: <span id="outname"></span></div>
+    <div>Last Name: <span id="outlast"></span></div>
+    <div>Email: <span id="outmail"></span></div>
+    <div>Phone number: <span id="outphone"></span></div>
+
+</div>
+
+
+
+    <script>
+const form1 = document.getElementById('myForm')
+
+form1.addEventListener("submit", function(e){
+    e.preventDefault()
+    const name = document.querySelector("#first")
+    const last = document.querySelector("#last")
+    const mail = document.querySelector("#mail")
+    const phone = document.querySelector('#phone')
+    outname.textContent=name.value
+    outlast.textContent=last.value
+    outmail.textContent=mail.value
+    outphone.textContent=phone.value
+    const nameerror = document.querySelector("#nameerror")
+    const lasterror = document.querySelector("#lasterror")
+    const mailerror = document.querySelector("#mailerror")
+    const phoneerror = document.querySelector("#phoneerror")
+
+    let isValid = true
+if (!/^[a-zA-Z]+$/.test(name.value)) {
+    nameerror.textContent = "Name invalid";
+    nameerror.style.color = "red";
+    isValid = false;
+} else {
+    nameerror.textContent = "";
+}
+if (!/^[a-zA-Z]+$/.test(last.value)) {
+    lasterror.textContent = "Name invalid";
+    lasterror.style.color = "red";
+    isValid = false;
+} else {
+    lasterror.textContent = "";
+}
+if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value)){
+    mailerror.textContent = "Invalid Email";
+    mailerror.style.color = "red";
+    isValid = false;
+} else {
+    mailerror.textContent = "";
+}
+
+if (phone.value.length>10){
+    phoneerror.textContent = "Phone number too long"+phone.value.length
+    phoneerror.style.color='red'
+    isValid=false}
+else if (phone.value.length<10){
+   phoneerror.textContent = "Phone number too short"+phone.value.length
+    phoneerror.style.color='red'
+    isValid=false 
+} else {
+    phoneerror.textContent=''
+}
+
+if(isValid){
+    alert("all good"+ phone.value)
+} else {
+        outname.textContent=''
+    outlast.textContent=''
+    outmail.textContent=''
+    outphone.textContent=''
+}
+})
+
+    </script>
+</body>

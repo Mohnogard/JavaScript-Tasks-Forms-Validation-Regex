@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <title></title>
+</head>
+
+<style>
+    
+</style>
+
+<body>
+<form id="myForm">
+<input type="text"id="name"placeholder="Enter your name"/>
+<small id="error"></small>
+<button type="submit">Submit</button>
+</form>
+
+<p id="output"> </p>
+
+    <script>
+const form1 = document.getElementById('myForm')
+
+form1.addEventListener("submit", function (event){
+    event.preventDefault()
+    const error = document.getElementById('error')
+    const name1 = document.getElementById("name").value
+    if (name1.length<=0){
+        error.textContent="ERROR"
+    }
+    else {
+        error.textContent="valid"
+    }
+})
+
+    </script>
+</body>

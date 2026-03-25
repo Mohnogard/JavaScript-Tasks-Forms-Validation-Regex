@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<head>
+    <title></title>
+</head>
+
+<style>
+
+*{
+    box-sizing: border-box;
+}
+body{
+  margin: 20px;
+    font-family: Arial, Helvetica, sans-serif
+
+}
+.boxes{
+    justify-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+small {
+  color: red;
+  font-size: 12px;
+  min-height: 14px; /* 🔥 prevents jumping */
+}
+/* Make inputs fill nicely */
+input {
+  width: 100%;
+  padding: 5px;
+}
+
+/* Center the button */
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 5px 15px;
+  align-items: center;
+}
+.full-width {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center; /* 🔥 real centering */
+}
+#output div {
+  margin-top: 5px;
+  width: 200px;
+}
+
+.container {
+  max-height: 900;
+  margin: 10px auto;
+  width: 50%;
+  padding: 30px;
+  border-radius: 30px;
+  border: blue 1px dashed;
+  box-shadow: ;
+}
+
+.form {
+  display: grid;
+  column-gap: 20px;
+  width: 100%;
+  border-radius: 30px;
+
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+
+.bigentry{
+    grid-column: span 2/1;
+}
+
+
+</style>
+
+<body>
+<div class="container">
+<h1>Registration form</h1>
+<form id="myForm" class="form">
+        <!-- <div class="intro">
+            Hello
+        </div> -->
+
+        <div>
+First Name:<input id="firstname"  type="text"placeholder='hello1'/>
+<small id="firsterror"></small>
+        </div>
+
+
+        <div>
+Last Name:<input  id="lastname" type="text"placeholder='hello2'/>
+<small id="lasterror"></small>
+        </div>
+
+
+        <div class="bigentry"style="margin:25px 0px;">
+Date of Birth:<input  id="date"  type="date"placeholder='hello3'/>
+<small id="dateerror"></small>
+        </div>
+        
+
+        <div class="bigentry">
+Enter your email:<input  id="email1" type="text"placeholder='hello4'/>
+        </div>
+
+        <div class="bigentry"  style="margin: 5px 0px 25px 0px;">
+<input type="text"id="email2"placeholder='Confirm Email'/>
+<small id="email2error"></small>
+        </div>
+
+        <div class="bigentry"style="margin-bottom: 25px;">
+Input Password<input  id="pass1" type="text"placeholder='hello6'/>
+<small id="pass1error"></small>
+        </div>
+
+        <div class="bigentry"  style="margin-bottom: 25px;">
+Confirm Password:<input id="pass2" type="text"placeholder='hello7'/>
+<small id="pass2error"></small>
+        </div>
+
+        <div class="bigentry" >
+            <button style="width: 60%;">Hello</button>
+            </div>
+            
+    </form>
+    <div style="text-align: center;">    
+        <small style="color: rgb(0, 0, 165);"> Please fix all errros before continuing</small>
+</div>
+</div>
+
+
+    <script>
+const myform = document.getElementById('myForm')
+
+myform.addEventListener("submit", function(e){
+
+e.preventDefault()
+
+const first = document.getElementById("firstname")
+const last = document.getElementById("lastname")
+const date = document.getElementById("date")
+const email1 = document.getElementById("email1")
+const email2 = document.getElementById("email2")
+const pass1 = document.querySelector("#pass1")
+const pass2 = document.querySelector("#pass2")
+
+const firsterr = document.getElementById("firsterror")
+const lasterr = document.getElementById("lasterror")
+const dateerr = document.getElementById("dateerror")
+const mailerr = document.querySelector("#email2error")
+const pass1err = document.getElementById("pass1error")
+const pass2err = document.getElementById("pass2error")
+const mainerr = document.querySelector("#mainerr")
+
+let isValid = true
+if (!/^[a-zA-Z]+$/.test(first.value)) {
+    firsterr.textContent = "Name invalid";
+    firsterr.style.color = "red";
+    isValid = false;
+} else {
+    firsterr.textContent = "";
+}
+if (!/^[a-zA-Z]+$/.test(last.value)) {
+    lasterr.textContent = "Name invalid";
+    lasterr.style.color = "red";
+    isValid = false;
+} else {
+    lasterror.textContent = "";
+}
+
+if(!date){
+    dateerr="Invalid date"
+    isValid=false;
+}
+
+if (email1.value!=email2.value){
+    mailerr.textContent = "Email not valid";
+    mailerr.style.color = "red";
+    isValid = false;
+} else {
+    mailerr.textContent = "";
+}
+
+if (pass1.value.length<8) {
+    pass1err.textContent = "pass too short"+pass1.value.length
+    pass1err.style.color='red'
+    isValid=false}
+else if (pass1.value.length>32){
+   pass1err.textContent = "pass too long"+pass1.value.length
+    pass1err.style.color='red'
+    isValid=false 
+} else {
+    pass1err.textContent=''
+}
+if (pass1.value!=pass2.value){
+    console.log(pass1.value)
+    console.log(pass2.value)
+    pass2err.textContent="ERROR"
+} else {
+    pass2err.textContent=''
+}
+if(!isValid){
+    mainerr.textContent='NO'
+}
+if(isValid){
+    alert("all good")
+} else if (isValid===false){
+    first.textContent=''
+    last.textContent=''
+    email1.textContent=''
+    email2.textContent=''
+    pass1.textContent=''
+    pass2.textContent=''
+
+}
+
+})
+
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
