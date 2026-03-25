@@ -10,27 +10,18 @@
 }
 body{
   margin: 20px;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: open sans ;
+    color: rgb(0, 0, 165);
+    font-weight: 700;
+    font-size: small;
+}
 
-}
-.boxes{
-    justify-items: center;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-}
 
 
 small {
   color: red;
   font-size: 12px;
   min-height: 14px; /* 🔥 prevents jumping */
-}
-/* Make inputs fill nicely */
-input {
-  width: 100%;
-  padding: 5px;
 }
 
 /* Center the button */
@@ -40,24 +31,16 @@ button {
   padding: 5px 15px;
   align-items: center;
 }
-.full-width {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center; /* 🔥 real centering */
-}
-#output div {
-  margin-top: 5px;
-  width: 200px;
-}
+
 
 .container {
-  max-height: 900;
   margin: 10px auto;
   width: 50%;
   padding: 30px;
   border-radius: 30px;
-  border: blue 1px dashed;
-  box-shadow: ;
+  border: none;
+  box-shadow: 0px 0px 10px rgb(180, 180, 180) ;
+  overflow: hidden;
 }
 
 .form {
@@ -65,12 +48,12 @@ button {
   column-gap: 20px;
   width: 100%;
   border-radius: 30px;
-
 }
 
 input {
   width: 100%;
-  padding: 5px;
+  padding: 7px;
+  box-shadow: inset 0px 1px 1px rgb(182, 182, 182);
   border: 1px solid #ccc;
   border-radius: 3px;
 }
@@ -85,32 +68,32 @@ input {
 
 <body>
 <div class="container">
-<h1>Registration form</h1>
+<h2 style="text-align: center; background-color: rgb(72, 72, 247);padding-top: 80px;padding-bottom: 20px; color: white;margin: -80px -50px 30px -50px">Registration form</h2>
 <form id="myForm" class="form">
         <!-- <div class="intro">
             Hello
         </div> -->
 
         <div>
-First Name:<input id="firstname"  type="text"placeholder='hello1'/>
+First Name:<input id="firstname"  type="text"/>
 <small id="firsterror"></small>
         </div>
 
 
         <div>
-Last Name:<input  id="lastname" type="text"placeholder='hello2'/>
+Last Name:<input  id="lastname" type="text"/>
 <small id="lasterror"></small>
         </div>
 
 
         <div class="bigentry"style="margin:25px 0px;">
-Date of Birth:<input  id="date"  type="date"placeholder='hello3'/>
+Date of Birth:<input  id="date"  type="date"/>
 <small id="dateerror"></small>
         </div>
         
 
         <div class="bigentry">
-Enter your email:<input  id="email1" type="text"placeholder='hello4'/>
+Email address:<input  id="email1" type="text"/>
         </div>
 
         <div class="bigentry"  style="margin: 5px 0px 25px 0px;">
@@ -119,17 +102,17 @@ Enter your email:<input  id="email1" type="text"placeholder='hello4'/>
         </div>
 
         <div class="bigentry"style="margin-bottom: 25px;">
-Input Password<input  id="pass1" type="text"placeholder='hello6'/>
+Input Password<input  id="pass1" type="password"/>
 <small id="pass1error"></small>
         </div>
 
         <div class="bigentry"  style="margin-bottom: 25px;">
-Confirm Password:<input id="pass2" type="text"placeholder='hello7'/>
+Confirm Password:<input id="pass2" type="password"/>
 <small id="pass2error"></small>
         </div>
 
         <div class="bigentry" >
-            <button style="width: 60%;">Hello</button>
+            <button style="color:white; width: 60%;background-color:rgb(72, 72, 247);border-radius: 30px;border: none;height:60%;font-size: large;font-weight: bold ;">Register</button>
             </div>
             
     </form>
@@ -164,14 +147,14 @@ const mainerr = document.querySelector("#mainerr")
 
 let isValid = true
 if (!/^[a-zA-Z]+$/.test(first.value)) {
-    firsterr.textContent = "Name invalid";
+    firsterr.textContent = "Letters only.";
     firsterr.style.color = "red";
     isValid = false;
 } else {
     firsterr.textContent = "";
 }
 if (!/^[a-zA-Z]+$/.test(last.value)) {
-    lasterr.textContent = "Name invalid";
+    lasterr.textContent = "Letters only.";
     lasterr.style.color = "red";
     isValid = false;
 } else {
@@ -183,35 +166,39 @@ if(!date){
     isValid=false;
 }
 
-if (email1.value!=email2.value){
-    mailerr.textContent = "Email not valid";
-    mailerr.style.color = "red";
-    isValid = false;
+
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email1.value)){
+    mailerr.textContent = "Invalid email"
+    mailerr.style.color = 'red'
+    isValid=false} else {
+     if (email1.value!=email2.value){
+        mailerr.textContent = "Emails do not match";
+        mailerr.style.color = "red";
+        isValid = false;
 } else {
     mailerr.textContent = "";
-}
+}}
 
-if (pass1.value.length<8) {
-    pass1err.textContent = "pass too short"+pass1.value.length
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email1.value)){
+    mailerr.textContent = "Invalid email"
+    mailerr.style.color = 'red'
+    isValid=false}
+
+if (!/^[A-Z](?=.*\d.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{7,31}$/.test(pass1.value)) {
+    pass1err.textContent = "Passwords should start with a capital letter, include 2 numbers, 1 special character, and be 8-32 characters long"
     pass1err.style.color='red'
     isValid=false}
-else if (pass1.value.length>32){
-   pass1err.textContent = "pass too long"+pass1.value.length
-    pass1err.style.color='red'
-    isValid=false 
-} else {
+else {
     pass1err.textContent=''
 }
 if (pass1.value!=pass2.value){
     console.log(pass1.value)
     console.log(pass2.value)
-    pass2err.textContent="ERROR"
+    pass2err.textContent="Passwords do not match."
 } else {
     pass2err.textContent=''
 }
-if(!isValid){
-    mainerr.textContent='NO'
-}
+
 if(isValid){
     alert("all good")
 } else if (isValid===false){
